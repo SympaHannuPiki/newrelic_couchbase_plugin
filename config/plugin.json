@@ -1,16 +1,11 @@
 {
   "agents": [
     {
-      "name" : "Wikipedia - English",
-      "host" : "en.wikipedia.org"
-    },
-    {
-      "name" : "Wikipedia - French",
-      "host" : "fr.wikipedia.org"
-    },
-    {
-      "name" : "Wikipedia - German",
-      "host" : "de.wikipedia.org"
+      "name" : "name_your_couchbase_server",
+      "host" : "put_your_host_here",
+      "port" : "put_port_number_here",
+      "username" : "put_username_here",
+      "password" : "put_password_here"
     }
   ]
 }
