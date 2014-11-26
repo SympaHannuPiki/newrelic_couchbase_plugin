@@ -1,7 +1,9 @@
 .classpath
 .project
+.settings
 build/
 META-INF/
 bin/
 config/newrelic.json
+config_seth/
 logs/
