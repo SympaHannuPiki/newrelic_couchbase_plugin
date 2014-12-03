@@ -3,7 +3,8 @@
 .settings
 build/
 META-INF/
-bin/
 config/newrelic.json
 config_seth/
 logs/
+bin/config/
+bin/logs/
