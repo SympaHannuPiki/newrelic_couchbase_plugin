@@ -89,6 +89,10 @@ public class CouchbaseAgent extends Agent {
 				bucketMetrics.putAll(this.getMetricsFromJSON((JSONObject) arrayObject, 
 					"buckets" + this.getObjectName((JSONObject) arrayObject)));
 			}
+			// Producing summary metrics by leaving out bucket name
+			for (Object arrayObject : (JSONArray) bucketObject) {
+				bucketMetrics.putAll(this.getMetricsFromJSON((JSONObject) arrayObject, "summary_buckets"));
+			}
 		}
 		this.addMetrics(bucketMetrics);
 	}
@@ -103,6 +107,10 @@ public class CouchbaseAgent extends Agent {
 			for (Object arrayObject : nodeObject) {
 				clusterMetrics.putAll(this.getMetricsFromJSON((JSONObject) arrayObject,
 					"nodes" + this.getObjectName((JSONObject) arrayObject)));
+			}
+			// Producing summary metrics by leaving out node name
+			for (Object arrayObject : nodeObject) {
+				clusterMetrics.putAll(this.getMetricsFromJSON((JSONObject) arrayObject, "summary_nodes"));
 			}
 		}
 		this.addMetrics(clusterMetrics);
