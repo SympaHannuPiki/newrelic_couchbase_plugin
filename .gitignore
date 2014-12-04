@@ -8,3 +8,4 @@ config_seth/
 logs/
 bin/config/
 bin/logs/
+*.old
