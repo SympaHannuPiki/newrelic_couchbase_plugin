@@ -1,4 +1,4 @@
-# New Relic Plugin for couchbase 
+# New Relic Plugin for Couchbase 
 ## Top Key Performance Indicators for Couchbase
 
 
@@ -16,7 +16,7 @@
 ### Installation & Usage Overview
 
 1. Download the latest version of the agent: [newrelic_couchbase_plugin.tar.gz](https://github.com/sschwartzman/newrelic-couchbase-plugin/blob/master/dist/newrelic_couchbase_plugin.tar.gz?raw=true)
-2. Gunzip & untar on couchbase server that you want to monitor
+2. Gunzip & untar on couchbase server that you want to monitor your Couchbase server from
 3. Configure `config/newrelic.json` 
   * [Click here for newrelic.json config details](#nrjson)
 4. OPTIONAL: Copy `config/plugin.json` from the OS-specific templates in `config` and configure that file. 
@@ -104,8 +104,7 @@ If you are running your plugin from a machine that runs outbound traffic through
 
 ###  <a name="pluginjson"></a> Configuring the `plugin.json` file
 
-The `plugin.json` file contains the list of OS level commands that you want to execute as part of the plugin, and global settings to apply across all commands. All current possibilities for each OS are found in the `config/plugin.json.[OS]` template files.
-To set up the agent for your OS, copy one of these templates to `plugin.json`. If you don't do this, the plugin will do it for you the first time it is run.
+The `plugin.json` file contains the list of Couchbase servers name, host, port, username, and password. Configuration supports multiple Couchbase databases, or run the New Relic plugin per Couchbase server.
 
 Each command will get its own object in the `agents` array, as seen in the Example below.
 `command` is the only required configuration for each object. Commands in lowercase are ones literally defined in the plugin (i.e. `iostat`), whereas commands in Caps are specialized variations on those commands (i.e. `IostatCPU`). 
@@ -118,76 +117,20 @@ Each plugin.json file now has a `global` object, which contains the optional con
   - I.e. If you want to turn on debug for one statement, you can set the `debug` object to false in the `global` object, and set it to true in that command's `agent` object.
 * If you choose to use the old versions of plugin.json (without a `global` option), those will work fine.
 
-#### Optional Configurations for `plugin.json`
-
-For each command, the following optional configurations are available:
-
-* `OS` - The OS you are monitoring. 
-  - If left out, it will use the "auto" setting, in which the plugin will detect your OS type. 
-  - Normally the "auto" setting works fine. If not, you can define it as any of: [aix, linux, sunos, osx].
-* `debug` - This is an extra debug setting to use when a specific command isn't reporting properly. 
-  - Enabling it will prevent metrics from being sent to New Relic.
-  - Seeing metrics in logs also requires setting `"log_level": "debug"` in `newrelic.json`.
-* `hostname` - To override the hostname that appears in the UI for this instance, set this option to any string that you want.
-  - If you leave this option out, the plugin will obtain your hostname from the JVM (java.net.InetAddress.getLocalHost().getHostName())
 
 #### Examples 
 
 With the optional configurations left as the defaults, this is what your plugin.json might look like:
 ```
 {
-    "global": {
-        "OS": "auto",
-        "debug": false,
-        "hostname": "auto"  
-    },
-    "agents": [
-        {
-            "command": "df"
-        },
-        {
-            "command": "iostat"
-        },
-        {
-            "command": "top"
-        },
-        {
-            "command": "vmstat"
-        },
-        {
-            "command": "VmstatTotals"
-        }
-    ]
-}
-```
-Here is an example with optional configurations set in the `agent` object that override the `global` settings:
-```
-{
-       "global": {
-        "OS": "auto",
-        "debug": false,
-        "hostname": "auto"  
-    },
-    "agents": [
-        {
-            "command": "df",
-            "debug": true
-        },
-        {
-            "command": "iostat",
-            "hostname": "not auto"  
-        },
-        {
-            "command": "top",
-            "OS": "linux",
-            "hostname": "also not auto"  
-        },
-        {
-            "command": "vmstat"
-        },
-        {
-            "command": "VmstatTotals"
-        }
-    ]
+  "agents": [
+    {
+      "name" : "Couchbase01",
+      "host" : "host1234",
+      "port" : "8091",
+      "username" : "serviceaccount",
+      "password" : "serviceaccountpassword"
+    }
+  ]
 }
 ```
