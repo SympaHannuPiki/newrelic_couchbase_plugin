@@ -106,8 +106,6 @@ If you are running your plugin from a machine that runs outbound traffic through
 
 The `plugin.json` file contains the list of Couchbase servers name, host, port, username, and password. Configuration supports multiple Couchbase databases, or run the New Relic plugin per Couchbase server.
 
-Each command will get its own object in the `agents` array, as seen in the Example below.
-`command` is the only required configuration for each object. Commands in lowercase are ones literally defined in the plugin (i.e. `iostat`), whereas commands in Caps are specialized variations on those commands (i.e. `IostatCPU`). 
 <a name="globalconf">
 #### Global Configurations (NEW!)
 

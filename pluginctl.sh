@@ -50,7 +50,7 @@ PLUGIN_NAME="New Relic Couchbase Plugin"
 PLUGIN_ERR_FILE=$PLUGIN_PATH/logs/newrelic_couchbase_plugin.err
 PLUGIN_PID_FILE=$PLUGIN_PATH/logs/newrelic_couchbase_plugin.pid
 PLUGIN_JAVA_CLASS=com.chocolatefactory.newrelic.plugins.couchbase.Main
-PLUGIN_JAVA_OPTS="-Xms16m -Xmx128m -cp $PLUGIN_PATH/bin/newrelic_couchbase_plugin.jar:$PLUGIN_PATH/lib/metrics_publish-2.0.1.jar:$PLUGIN_PATH/lib/json-simple-1.1.1.jar"
+PLUGIN_JAVA_OPTS="-Xms16m -Xmx128m -cp $PLUGIN_PATH/bin/newrelic_couchbase_plugin.jar:$PLUGIN_PATH/lib/metrics_publish-2.0.1.jar:$PLUGIN_PATH/lib/json-simple-1.1.1.jar:$PLUGIN_PATH/lib/commons-codec-1.10.jar"
 PLUGIN_RESTART_ON_START=0
 
 check_plugin_status() {
